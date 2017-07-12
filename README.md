@@ -10,7 +10,7 @@ REST APIs
 
 UI Mockup Screen
 --------------
-![Home](HomePage.png)
+![Home1](HomePage.png)
 
 Class Diagrams
 --------------
