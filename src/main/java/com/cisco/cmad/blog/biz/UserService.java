@@ -1,17 +1,19 @@
 package com.cisco.cmad.blog.biz;
 
-import com.cisco.cmad.blog.api.BlogException;
-import com.cisco.cmad.blog.api.DuplicateInputException;
-import com.cisco.cmad.blog.api.InvalidInputException;
+import java.util.List;
+
 import com.cisco.cmad.blog.api.User;
 import com.cisco.cmad.blog.api.UserInterface;
 import com.cisco.cmad.blog.data.UserDAO;
 import com.cisco.cmad.blog.data.UserJpaDao;
+import com.cisco.cmad.blog.exception.BlogException;
+import com.cisco.cmad.blog.exception.DuplicateInputException;
+import com.cisco.cmad.blog.exception.InvalidInputException;
 
 
 public class UserService implements UserInterface{
 
-	private UserDAO dao = new UserJpaDao();
+	private UserDAO dao = UserJpaDao.getInstance();
 
 	@Override
 	public void create(User user) throws InvalidInputException,
@@ -61,5 +63,11 @@ public class UserService implements UserInterface{
             e.printStackTrace();
             throw new BlogException();
         }
+	}
+
+	@Override
+	public List<User> readAllUsers() throws InvalidInputException, BlogException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

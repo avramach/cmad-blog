@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.cisco.cmad.blog.api.User;
+import com.cisco.cmad.blog.test.DatabaseSetup;
 
 
 public class UserJpaDao implements UserDAO {
@@ -17,7 +18,7 @@ public class UserJpaDao implements UserDAO {
 		if (UserJpaDao == null) {
 			UserJpaDao = new UserJpaDao();
 			factory = Persistence.createEntityManagerFactory("blogPu");
-
+			DatabaseSetup.addEmf(factory);		
 		}
 		return UserJpaDao;
 	}

@@ -3,18 +3,20 @@ package com.cisco.cmad.blog.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
 
 @Entity
 @XmlRootElement
@@ -28,10 +30,9 @@ public class Category {
 	
 	private String CategoryName;
 	
-	@Transient
 	private long blogCount;
 	
-	@ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},mappedBy="categories" ,fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="categories")
 	@XmlTransient
 	private List<Blog> blogList = new ArrayList<Blog>();
 
@@ -39,6 +40,7 @@ public class Category {
 	public List<Blog> getBlogList() {
 		return blogList;
 	}
+	
 	@XmlTransient
 	public void setBlogList(List<Blog> blogList) {
 		this.blogList = blogList;
@@ -58,6 +60,14 @@ public class Category {
 
 	public void setCategoryName(String categoryName) {
 		CategoryName = categoryName;
+	}
+
+	public long getBlogCount() {
+		return blogCount;
+	}
+
+	public void setBlogCount(long blogCount) {
+		this.blogCount = blogCount;
 	}
 
 }
