@@ -2,13 +2,15 @@ package com.cisco.cmad.blog.api;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,10 +32,13 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTimeStamp;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
+    @ManyToOne()
     @JoinColumn(name="USER_ID")
     private User author;
-
+  
+    @ManyToOne
+    @JoinTable(name = "BLOG_COMMENT_TABLE")
+     private Blog blogCommentOn;
     //@OneToOne
     //private Comment parentComment;
 
@@ -67,6 +72,14 @@ public class Comment {
 
 	public void setCreateTimeStamp(Date createTimeStamp) {
 		this.createTimeStamp = createTimeStamp;
+	}
+
+	public Blog getBlogCommentOn() {
+		return blogCommentOn;
+	}
+
+	public void setBlogCommentOn(Blog blogCommentOn) {
+		this.blogCommentOn = blogCommentOn;
 	}
 
 }

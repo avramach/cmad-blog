@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.cisco.cmad.blog.api.Comment;
+import com.cisco.cmad.blog.test.DatabaseSetup;
 
 
 public class CommentJpaDao implements CommentDAO {
@@ -16,7 +17,9 @@ public class CommentJpaDao implements CommentDAO {
 	    {
 	    	if(CommentJpaDao == null){
 	    		CommentJpaDao = new CommentJpaDao();
-	    		factory = Persistence.createEntityManagerFactory("blogPu");	        	}
+	    		factory = Persistence.createEntityManagerFactory("blogPu");	   
+	    		DatabaseSetup.addEmf(factory);			
+	    	}
 	         return CommentJpaDao;
 	    }
 	@Override
